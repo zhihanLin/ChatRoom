@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Chatroom</title>
+  <link rel="stylesheet" href="lib/jquery-mCustomScrollbar/css/jquery.mCustomScrollbar.min.css" />
+  <link rel="stylesheet" href="lib/jquery-emoji/css/jquery.emoji.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <style>
+    .register_box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 380px;
+      height: 380px;
+      transform: translate(-50%, -50%);
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: #999 0 2px 10px;
+    }
+
+    .register_box h3 {
+      text-align: center;
+      color: #333;
+      font-size: 24px;
+      font-weight: 400;
+      margin: 15px auto;
+    }
+
+    .input {
+      border: 1px solid #ccc;
+      padding: 7px 0px;
+      padding-left: 0px;
+      border-radius: 3px;
+      padding-left: 5px;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;
+      -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      width: 200px;
+    }
+
+    .register_box>div {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .register_box div>div {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    #register_avatar {
+      width: 250px;
+    }
+
+    #register_avatar li {
+      width: 46px;
+      height: 46px;
+      display: inline-block;
+    }
+
+    #register_avatar li img {
+      width: 44px;
+      height: 44px;
+      margin:2px;
+    }
+
+    .button {
+      text-align: center;
+    }
+
+    .button #register {
+      position: relative;
+      display: inline-block;
+      width: 200px;
+      box-sizing: border-box;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+      color: #ffffff;
+      line-height: 2.55555556;
+      border-radius: 5px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      overflow: hidden;
+      background-color: #66afe9;
+      border: none;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .button #register_login {
+      position: relative;
+      display: inline-block;
+      box-sizing: border-box;
+      font-size: 14px;
+      text-align: center;
+      text-decoration: none;
+      color: #ffffff;
+      line-height: 2.55555556;
+      border-radius: 5px;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      margin-top: 5px;
+      width: 50px;
+      background-color: #cccccc;
+      margin-right: -25px;
+    }
+
+    .register_box li.selected img {
+      border:2px solid #1aad19;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Registration-->
+  <div class="register_box" style="display: none;">
+    <h3>Sign Up</h3>
+    <div>
+      <div>Username</div>
+      <input class="input" type="text" placeholder="Username" id="register_username"><br>
+    </div>
+    <div>
+      <div>Password</div>
+      <input class="input" type="text" placeholder="Password" id="register_password"><br>
+    </div>
+    <div id="sex">
+      <div>Gender</div>
+    <li>M&nbsp; <input type="radio" value="male" name="sex"> &nbsp; &nbsp;</li>
+    <li>F&nbsp; <input type="radio" value="female" name="sex"></li>
+    </div>
+    <div>
+      <div>Avatar</div>
+      <ul class="avatar" id="register_avatar">
+        <li class="selected"><img src="images/avatar01.jpg" alt="" /></li>
+        <li><img src="images/avatar02.jpg" alt="" /></li>
+        <li><img src="images/avatar03.jpg" alt="" /></li>
+        <li><img src="images/avatar04.jpg" alt="" /></li>
+        <li><img src="images/avatar05.jpg" alt="" /></li>
+        <li><img src="images/avatar06.jpg" alt="" /></li>
+        <li><img src="images/avatar07.jpg" alt="" /></li>
+        <li><img src="images/avatar08.jpg" alt="" /></li>
+        <li><img src="images/avatar09.jpg" alt="" /></li>
+        <li><img src="images/avatar10.jpg" alt="" /></li>
+      </ul>
+    </div>
+    <section class="button">
+      <input type="button" value="Sign Up" id="register"> &nbsp;
+      <!--<button id="register_login">Login</button> -->
+    </section>
+  </div>
+
+
+  <!-- LogIn -->
+  <div class="login_box" style="display: display;">
+    <h3>Chat</h3>
+    <p>Username</p>
+    <input type="text" placeholder="Enter Username" id="username" />
+    <p>Password</p>
+    <input type="text" placeholder="Enter Password" id="password" />
+    <button class="weui-btn" id="loginBtn">Log In</button>
+    <button class="weui-btn" id="registerBtn">Sign Up</button>
+  </div>
+
+
+  <!-- Chatroom -->
+  <div class="container" style="display: none;">
+    <!-- Friends -->
+    <div class="user-list">
+      <div class="header">
+        <div class="avatar">
+          <img class="img avatar_url" src="images/avatar2.jpg" alt="" />
+        </div>
+        <div class="info">
+          <!--  -->
+          <h3 class="username">zhlin</h3>
+        </div>
+      </div>
+      <div class="title">
+        <h3>Online</h3>
+      </div>
+      <ul>
+          <!--         
+          <li class="user">
+            <div class="avatar"><img src="images/avatar2.jpg" alt="" /></div>
+            <div class="name">zhlin</div>
+          </li> 
+           -->
+      </ul>
+    </div>
+    <!-- MainWindow -->
+    <div class="box">
+      <!-- Head -->
+      <div class="box-hd">
+        <h3>Chat(<span id="userCount">99</span>)</h3>
+      </div>
+
+      <!-- Body -->
+      <div class="box-bd">
+        <!--
+          <div class="system">
+            <p class="message_system">
+              <span class="content">"往事随风"邀请你和"Boy"加入了群聊</span>
+            </p>
+          </div>
+          <div class="message-box">
+            <div class="my message">
+              <img class="avatar" src="images/avatar2.jpg" alt="" />
+              <div class="content">
+                <div class="bubble">
+                  <div class="bubble_cont">在干嘛</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="message-box">
+            <div class="other message">
+              <img class="avatar" src="images/avatar02.jpg" alt="" />
+              <div class="content">
+                <div class="nickname">小美</div>
+                <div class="bubble">
+                  <div class="bubble_cont">吃饭</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          -->
+      </div>
+
+      <!-- Bottom -->
+      <div class="box-ft">
+        <!-- Tools -->
+        <div class="toolbar">
+          <a href="javascript:;" title="emoji" class="face"></a>
+          <a href="javascript:;" title="screenshot" class="screen-cut">
+          </a>
+          <a href="javascript:;" title="image" class="file">
+            <label for="file"></label>
+            <input type="file" id="file" style="display: none;">
+          </a>
+        </div>
+        <!-- TypeArea -->
+        <div class="content">
+          <div class="text" id="content" contenteditable></div>
+        </div>
+        <!-- SendButton -->
+        <div class="action">
+          <span class="desc">Press Ctrl+Enter to Send</span>
+          <a class="btn-send" id="btn-send" href="javascript:;">Send</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- socketio -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/jquery-1.12.4.js"></script>
+  <script src="lib/jquery-mCustomScrollbar/script/jquery.mCustomScrollbar.min.js"></script>
+  <script src="lib/jquery-emoji/js/jquery.emoji.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
